@@ -2,6 +2,7 @@ import datetime
 from rest_framework import serializers
 from escola.models import Estudante,Curso, Matricula
 from datetime import date
+from django.core.validators import MinLengthValidator
 
 class EstudanteSerializer(serializers.ModelSerializer):
     class Meta:
@@ -64,13 +65,6 @@ class MatriculaSerializer(serializers.ModelSerializer):
         model = Matricula
         exclude = []
 
-    # def validate_curso (self, data):
-    #     estudante = data['estudante']
-    #     curso = data['curso']
-    #     periodo = data['periodo']
-
-    #     if self.vali
-
 class ListaMatriculasEstudanteSerializer(serializers.ModelSerializer):
     curso = serializers.ReadOnlyField(source='curso.descricao')
     periodo = serializers.SerializerMethodField()
@@ -85,6 +79,11 @@ class ListaMatriculasCursoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Matricula
         fields = ['estudante_nome']
+
+class EstudanteSerializerV2(serializers.ModelSerializer):
+    class Meta:
+        model = Estudante
+        fields = ['id', 'nome', 'email', 'celular']
         
         
         

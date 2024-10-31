@@ -1,6 +1,12 @@
 asgiref==3.7.2
 Django==5.0.3
+django-filter==24.3
 djangorestframework==3.15.0
+Faker==30.6.0
 Markdown==3.6
+python-dateutil==2.9.0.post0
+six==1.16.0
 sqlparse==0.4.4
+typing_extensions==4.12.2
 tzdata==2024.1
+validate-docbr==1.10.0

@@ -19,7 +19,7 @@ class Curso(models.Model):
         ('A','Avançado'),
     ) 
     codigo = models.CharField(max_length = 10,  unique = True, validators=[MinLengthValidator(3)])
-    descricao = models.CharField(max_length = 100, blank = False)
+    descricao = models.CharField(max_length = 100, blank = False, validators=[MinLengthValidator(10)])
     nivel = models.CharField(max_length = 1, choices = NIVEL, blank = False, null = False, default = 'B')
 
     def __str__(self):
