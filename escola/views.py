@@ -21,7 +21,7 @@ class CursoViewSet(viewsets.ModelViewSet):
     serializer_class = CursoSerializer
 
 class MatriculaViewSet(viewsets.ModelViewSet):
-    queryset = Matricula.objects.all()
+    queryset = Matricula.objects.all().order_by('id')
     serializer_class = MatriculaSerializer
 
 class ListaMatriculaEstudante(generics.ListAPIView):

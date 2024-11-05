@@ -4,13 +4,13 @@ from escola.views import EstudanteViewSet,CursoViewSet,MatriculaViewSet,ListaMat
 from rest_framework import routers
 
 router = routers.DefaultRouter()
-router.register('estudantes',EstudanteViewSet,basename='Estudantes')
+router.register('estudantes',EstudanteViewSet,basename='Estudantes')    
 router.register('cursos',CursoViewSet,basename='Cursos')
 router.register('matriculas',MatriculaViewSet,basename='Matriculas')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include(router.urls)),
-    path('estudantes/<int:pk>/matriculas/',ListaMatriculaEstudante.as_view()),
+    path('estudantes/<int:pk>/matriculas/',ListaMatriculaEstudante.as_view(), name='matriculas-estudantes-list'),
     path('cursos/<int:pk>/matriculas/',ListaMatriculaCurso.as_view()),
 ]
