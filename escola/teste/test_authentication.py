@@ -70,6 +70,27 @@ class EstudanteAPITests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(Estudante.objects.count(), 2)
 
+    def test_put_estudante(self):
+        data = {
+            'nome': 'Ludmila',
+            'email': 'updatedemail@gmail.com',
+            'cpf': '00575577053',
+            'data_nascimento': '2002-06-06',
+            'celular': '84999999999'
+        }
+        response = self.client.put(reverse('Estudantes-detail', kwargs={'pk': self.estudante.id}), data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+        self.estudante.refresh_from_db()
+        self.assertEqual(self.estudante.nome, 'Ludmila')
+        self.assertEqual(self.estudante.email, 'updatedemail@gmail.com')
+        self.assertEqual(self.estudante.celular, '84999999999')
+
+    def test_delete_estudante(self):
+        response = self.client.delete(reverse('Estudantes-detail', kwargs={'pk': self.estudante.id}))
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+        self.assertEqual(Estudante.objects.count(), 0)
+
     # def test_put_estudante(self):
     #     data = {'nome': 'Tossego Doszoi',
     #             'email': 'tossegodoszoi@gmail.com',
